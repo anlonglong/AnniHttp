@@ -16,16 +16,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //这句可以放在自定义的Application中
+        //这句可以放在Application中
         AnniRequest.initContext(this.applicationContext)
         val hashMapOf =
                 hashMapOf("method" to "GetDistricts",
-                        "version" to "cyou_1.0.0",
-                        "token" to "Y|66150061c090fc07427ba9b9558960",
+                        "version" to "version_1.0.0",
+                        "token" to "Y|66150061c090fc07427ba9b9589765",
                         "districtPid" to "1")
 
         val myRequest = AnniRequest()
-        myRequest.setUrl("http://115.159.71.171/api.cyoubike.com/")
+        myRequest.setUrl("scheme://server/path/")
         myRequest.setPostBodyMap(hashMapOf)
         AnniHttp.getAnniHttp().setAnniRequest(myRequest).executeHttpRequest(HttpMethod.POST,object : HttpListener<Entity>{
             override fun onFailure(call: Call?, e: IOException?) {
