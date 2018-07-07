@@ -7,9 +7,11 @@ import com.aillen.annhttp.net.http.HttpListener
 import com.aillen.annhttp.net.http.HttpMethod
 import com.aillen.annhttp.net.http.anni.AnniHttp
 import com.aillen.annhttp.net.http.anni.AnniRequest
+import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.Call
 import okhttp3.Response
 import java.io.IOException
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,15 +27,16 @@ class MainActivity : AppCompatActivity() {
                         "districtPid" to "1")
 
         val myRequest = AnniRequest()
-        myRequest.setUrl("scheme://server/path/")
+        myRequest.setUrl("you base url is here")
         myRequest.setPostBodyMap(hashMapOf)
         AnniHttp.getAnniHttp().setAnniRequest(myRequest).executeHttpRequest(HttpMethod.POST,object : HttpListener<Entity>{
             override fun onFailure(call: Call?, e: IOException?) {
-
+                responseResult.text = e?.message
             }
 
             override fun onResponse(call: Call?, response: Response?, data: Entity?) {
-                println("call = [${call}], response = [${response}], data = [${data}]")
+                println("call = [$call], response = [$response], data = [$data]")
+                responseResult.text = data.toString()
             }
         })
 
